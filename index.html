@@ -3,7 +3,18 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+
 	<title>Kalorientracker</title>
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="Makros">
+	<meta name="theme-color" content="#2c2c2c">
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="icon-192.png">
+
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://unpkg.com/html5-qrcode"></script>
 </head>
@@ -13,15 +24,17 @@
 		<h1>MAKRO - TRACKER</h1>
 
 		<div class="overlay hidden" id="overlay"></div>
+
 		<div class="add-container hidden" id="add-container">
 			<h2 class="ueberschrift">BARCODE SCANNEN ODER LEBENSMITTEL SUCHEN</h2>
+
 			<form id="such-form">
-				<input type="text" name="begriff" placeholder="Lebensmittel suchen" required>
+				<input type="text" name="begriff" placeholder="Lebensmittel suchen" autocomplete="off" required>
 				<button type="submit">Suchen</button>
 			</form>
 
 			<form id="barcode-form">
-				<input type="text" name="code" placeholder="Barcode eingeben" inputmode="numeric">
+				<input type="text" name="code" placeholder="Barcode eingeben" inputmode="numeric" autocomplete="off">
 				<button type="submit">Barcode</button>
 			</form>
 
@@ -33,26 +46,26 @@
 
 		<div class="add-container hidden" id="pfl-container">
 			<h2 class="ueberschrift">Profil-Einstellungen</h2>
+
 			<form id="pflSettings">
 				<div>
 					<span>Kalorienziel</span>
-					<input type="text" name="gKalorien">
+					<input type="text" name="gKalorien" inputmode="numeric">
 				</div>
 				<div>
 					<span>Fettziel</span>
-					<input type="text" name="gFat">
+					<input type="text" name="gFat" inputmode="numeric">
 				</div>
 				<div>
 					<span>Carbziel</span>
-					<input type="text" name="gCarbs">
+					<input type="text" name="gCarbs" inputmode="numeric">
 				</div>
 				<div>
 					<span>Proteinziel</span>
-					<input type="text" name="gProt">
+					<input type="text" name="gProt" inputmode="numeric">
 				</div>
 				<button type="submit">MAKROS UPDATEN</button>
 			</form>
-
 		</div>
 
 		<div class="tage-navigation">
@@ -87,18 +100,16 @@
 		<div id="tagesbilanz">
 			<h2>Heute gegessen</h2>
 			<ul id="tagesliste"></ul>
-
 		</div>
 
 		<div id="bottom-bar">
-			<button id="home">HOME</button>
-			<button id="add">ADD</button>
-			<button id="profile">PROFILE</buttom>
+			<button id="home" type="button">HOME</button>
+			<button id="add" type="button">ADD</button>
+			<button id="profile" type="button">PROFILE</button>
 		</div>
-
 	</div>
 
-
+	<script src="viewport-lock.js"></script>
 	<script type="module" src="main.js"></script>
 </body>
 
