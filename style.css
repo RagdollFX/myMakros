@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Martian+Mono:wght@400;600&display=swap');
+
+/* ---------------------------------------------------------
+   Kalorientracker – Küchenwaagen-Optik
+   Archivo für Text, Martian Mono für alles Gewogene
+   --------------------------------------------------------- */
+
+:root {
+	--paper: #e9ece6;
+	--card: #f8f9f6;
+	--ink: #171d1a;
+	--muted: #5d6b64;
+	--line: #d3d9d0;
+
+	--lcd: #aebd94;
+	--lcd-deep: #9aab7e;
+	--lcd-ink: #1a2416;
+
+	--danger: #8c3b2e;
+
+	--radius: 4px;
+	--bar: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 2rem var(--bar) 9rem;
+	max-width: 44rem;
+	margin-inline: auto;
+
+	background: var(--paper);
+	color: var(--ink);
+	font-family: 'Archivo', system-ui, sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* --- Überschriften ---------------------------------------- */
+
+h1 {
+	margin: 0 0 1.75rem;
+	font-size: clamp(1.5rem, 4vw, 2rem);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
+
+h1::after {
+	content: '';
+	display: block;
+	width: 2.5rem;
+	height: 3px;
+	margin-top: 0.75rem;
+	background: var(--ink);
+}
+
+h2 {
+	margin: 2.5rem 0 0.75rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+/* --- Suchleiste ------------------------------------------- */
+
+#such-form {
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 0.75rem;
+}
+
+#such-form input[type='text'],
+#barcode-form input[type='text'] {
+	flex: 1;
+	min-width: 0;
+	padding: 0.75rem 0.875rem;
+
+	border: 1.5px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--card);
+	color: var(--ink);
+
+	font-family: inherit;
+	font-size: 1rem;
+}
+
+#such-form input[type='text']::placeholder {
+	color: var(--muted);
+}
+
+#such-form input[type='text']:focus-visible {
+	outline: none;
+	border-color: var(--ink);
+}
+
+#such-form button,
+#barcode-form button {
+	padding: 0.75rem 1.25rem;
+	border: none;
+	border-radius: var(--radius);
+	background: var(--ink);
+	color: var(--paper);
+
+	font-family: inherit;
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	cursor: pointer;
+
+	transition: transform 0.08s ease, background 0.15s ease;
+}
+
+#such-form button:hover {
+	background: #2a3430;
+}
+
+#such-form button:active {
+	transform: translateY(1px);
+}
+
+#such-form button:disabled {
+	background: var(--muted);
+	cursor: wait;
+}
+
+.tage-navigation {
+	display: flex;
+	flex-direction: center;
+	justify-content: center;
+	align-content: center;
+	background-color: var(--lcd);
+
+
+}
+
+#aktuelles-datum {
+	font-size: 2rem;
+	font-variant-numeric: tabular-nums;
+}
+
+#vorheriger-tag,
+#naechster-tag {
+	padding: 1rem;
+	border: none;
+	border-radius: 20rem;
+	background: var(--ink);
+	color: var(--paper);
+	text-align: center;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: 100;
+	cursor: pointer;
+}
+
+/* --- Statuszeile ------------------------------------------ */
+
+#such-status {
+	margin: 0 0 1rem;
+	min-height: 1.25rem;
+	font-size: 0.8125rem;
+	color: var(--muted);
+}
+
+/* --- Listen allgemein ------------------------------------- */
+
+#ergebnisse,
+#tagesliste {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* --- Suchergebnisse: anklickbar wie Waagentasten ---------- */
+
+#ergebnisse li {
+	padding: 0.75rem 0.875rem;
+	margin-bottom: 0.375rem;
+
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--card);
+
+	font-size: 0.9375rem;
+	cursor: pointer;
+
+	transition: border-color 0.12s ease, transform 0.08s ease;
+}
+
+#ergebnisse li:hover {
+	border-color: var(--ink);
+}
+
+#ergebnisse li:active {
+	transform: translateY(1px);
+}
+
+/* --- Tagesliste ------------------------------------------- */
+
+#tagesliste li {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+
+	padding: 0.875rem 0.5rem 0.875rem 0;
+	border-bottom: 1px solid var(--line);
+
+	font-size: 0.9375rem;
+	font-variant-numeric: tabular-nums;
+}
+
+#tagesliste li:first-child {
+	border-top: 1px solid var(--line);
+}
+
+#tagesliste:empty::after {
+	content: 'Noch nichts eingetragen. Such oben ein Lebensmittel und tipp es an.';
+	display: block;
+	padding: 1.5rem 0;
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+
+/* Löschen-Knopf */
+
+#tagesliste .del {
+	flex-shrink: 0;
+	margin-left: auto;
+	width: 1.75rem;
+	height: 1.75rem;
+
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: transparent;
+	color: var(--muted);
+
+	font-family: inherit;
+	font-size: 0.75rem;
+	line-height: 1;
+	cursor: pointer;
+
+	transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+#tagesliste .del:hover {
+	color: var(--danger);
+	border-color: var(--danger);
+}
+
+/* --- Tagessumme: das LCD-Display -------------------------- */
+
+#summe {
+	position: fixed;
+	left: 50%;
+	bottom: 1rem;
+	transform: translateX(-50%);
+	z-index: 10;
+
+	max-width: 200rem;
+	margin: 0;
+	padding: 1.125rem 1.25rem;
+
+	border-radius: 6px;
+	background:
+		repeating-linear-gradient(to bottom,
+			transparent 0 3px,
+			rgba(0, 0, 0, 0.035) 3px 4px),
+		var(--lcd);
+	box-shadow:
+		inset 0 2px 5px rgba(0, 0, 0, 0.22),
+		inset 0 -1px 0 rgba(255, 255, 255, 0.28),
+		0 6px 20px rgba(23, 29, 26, 0.18);
+
+	color: var(--lcd-ink);
+	font-family: 'Martian Mono', ui-monospace, monospace;
+	font-size: 90%;
+	font-weight: 100;
+	letter-spacing: -0.03em;
+	font-variant-numeric: tabular-nums;
+	text-align: center;
+	white-space: nowrap;
+}
+
+
+
+
+
+/* --- Zugänglichkeit --------------------------------------- */
+
+:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
+
+/* --- Schmale Displays ------------------------------------- */
+
+@media (max-width: 30rem) {
+	body {
+		padding-top: 1.25rem;
+	}
+
+	#such-form {
+		flex-wrap: wrap;
+	}
+
+	#such-form button {
+		width: 100%;
+	}
+
+	#tagesliste li {
+		flex-wrap: wrap;
+		font-size: 0.875rem;
+	}
+}

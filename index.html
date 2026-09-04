@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Kalorientracker</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+	<div class="app">
+		<h1>MAKRO - TRACKER</h1>
+
+		<div class="overlay hidden" id="overlay"></div>
+		<div class="add-container hidden" id="add-container">
+			<h2 class="ueberschrift">BARCODE SCANNEN ODER LEBENSMITTEL SUCHEN</h2>
+			<form id="such-form">
+				<input type="text" name="begriff" placeholder="Lebensmittel suchen" required>
+				<button type="submit">Suchen</button>
+			</form>
+
+			<form id="barcode-form">
+				<input type="text" name="code" placeholder="Barcode eingeben" inputmode="numeric">
+				<button type="submit">Barcode</button>
+			</form>
+
+			<div id="barcode-scanner"></div>
+
+			<p id="such-status"></p>
+			<ul id="ergebnisse"></ul>
+		</div>
+
+		<div class="add-container hidden" id="pfl-container">
+			<h2 class="ueberschrift">Profil-Einstellungen</h2>
+			<form id="pflSettings">
+				<div>
+					<span>Kalorienziel</span>
+					<input type="text" name="gKalorien">
+				</div>
+				<div>
+					<span>Fettziel</span>
+					<input type="text" name="gFat">
+				</div>
+				<div>
+					<span>Carbziel</span>
+					<input type="text" name="gCarbs">
+				</div>
+				<div>
+					<span>Proteinziel</span>
+					<input type="text" name="gProt">
+				</div>
+				<button type="submit">MAKROS UPDATEN</button>
+			</form>
+
+		</div>
+
+		<div class="tage-navigation">
+			<button id="vorheriger-tag" type="button">&lsaquo;</button>
+			<div id="aktuelles-datum"></div>
+			<button id="naechster-tag" type="button">&rsaquo;</button>
+			<button id="heute" type="button">HEUTE</button>
+		</div>
+
+		<div class="makros">
+			<div class="bar">
+				<div class="bar-fill" id="kcal-fill" style="background-color: var(--kcal);"></div>
+				<span class="bar-text"><b>Kalorien</b><span id="kcal-wert">0</span></span>
+			</div>
+
+			<div class="bar">
+				<div class="bar-fill" id="protein-fill" style="background-color: var(--protein);"></div>
+				<span class="bar-text"><b>Proteine</b><span id="protein-wert">0 g</span></span>
+			</div>
+
+			<div class="bar">
+				<div class="bar-fill" id="fat-fill" style="background-color: var(--fat);"></div>
+				<span class="bar-text"><b>Fette</b><span id="fett-wert">0 g</span></span>
+			</div>
+
+			<div class="bar">
+				<div class="bar-fill" id="carbs-fill" style="background-color: var(--carbs);"></div>
+				<span class="bar-text"><b>Carbs</b><span id="carbs-wert">0 g</span></span>
+			</div>
+		</div>
+
+		<div id="tagesbilanz">
+			<h2>Heute gegessen</h2>
+			<ul id="tagesliste"></ul>
+
+		</div>
+
+		<div id="bottom-bar">
+			<button id="home">HOME</button>
+			<button id="add">ADD</button>
+			<button id="profile">PROFILE</buttom>
+		</div>
+
+	</div>
+
+
+	<script type="module" src="main.js"></script>
+</body>
+
+</html>
